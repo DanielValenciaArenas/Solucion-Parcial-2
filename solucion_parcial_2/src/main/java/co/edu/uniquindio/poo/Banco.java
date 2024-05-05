@@ -39,8 +39,40 @@ public class Banco {
         return listaTitulares;
     }
 
-    public void transferirDinerio (CuentaBancaria cuentaDeOrigen, CuentaBancaria cuentaDeDestino){
-        
+    /*
+     * Método para consultar el saldo de una cuenta 
+     */
+    public double consultarSaldo (CuentaBancaria cuentaBancaria){
+        if(cuentaBancaria.getEstado() == true){
+            return cuentaBancaria.getSaldo();
+        }
+        else {
+            return 0.0;
+        }
     }
-    
+
+    /*
+     * Método para transferir dinero de una cuenta a otra
+     */
+    public void transferirDinerio (CuentaBancaria cuentaDeDestino, double cantidad){
+        assert cantidad > 0:"El dinero a transferir no puede ser negativo";
+        
+        if(this.cuentaBancaria.getNumeroCuenta() != null && cuentaDeDestino.getNumeroCuenta() != null){
+            if(this.cuentaBancaria.getSaldo() >= cantidad){
+                if(cuentaDeDestino.getEstado()==true){
+                    this.cuentaBancaria.retirar(cantidad);
+                    cuentaDeDestino.depositar(cantidad);
+                }
+                else{
+                    System.out.println("La cuenta de destino está inactiva");
+                }
+            }
+            else{
+                System.out.println("Saldo insuficiente para realizar la transferencia o la cuenta está inactiva (saldo en 0)");
+            }
+        }
+        else{
+            System.out.println("Una de las cuentas no existe (no tiene un número de cuenta)");
+        }
+   }
 }

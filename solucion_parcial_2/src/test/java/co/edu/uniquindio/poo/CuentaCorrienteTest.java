@@ -1,7 +1,7 @@
 /**
- * Clase para probar el funcionamiento del código
- * @author Área de programación UQ
- * @since 2023-08
+ * Clase para probar el funcionamiento del código de la clase CuentaCorriente
+ * @author Daniel Valencia Arenas
+ * @since 2024
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
@@ -20,14 +20,17 @@ public class CuentaCorrienteTest {
     private static final Logger LOG = Logger.getLogger(CuentaCorrienteTest.class.getName());
 
     @Test
-    public void verificarValorNegativo() {
-        LOG.info("Inicio test verificarValorNegativo");
-        Titular titular = new Titular("Marzello", "Montes Bedoya");
+    public void retiroEnCuentaCorriente() {
+        LOG.info("Inicio test retiroEnCuentaCorriente");
+
+        Titular titular = new Titular("Karoll", "Gonzales Sevilla");
         Collection<Transaccion> listaTransacciones = new LinkedList<>();
-        CuentaBancaria cuenta = new CuentaAhorros(titular, 11, 50000.0, true, listaTransacciones, 1.1);
-        cuenta.depositar(-20000);
-        assertEquals(70000, cuenta.getSaldo());
-        LOG.info("Finalización test verificarValorNegativo");
+        CuentaCorriente cuenta = new CuentaCorriente(titular, "15623", 40000.0, true, listaTransacciones, 120000.0);
+        cuenta.retirar(110000.0);
+        
+        assertEquals(50000.0, cuenta.getSobregiro());
+
+        LOG.info("Finalización test retiroEnCuentaCorriente");
 
     }
 

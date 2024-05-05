@@ -7,7 +7,7 @@ import java.util.Collection;
  */
 public abstract class CuentaBancaria {
     private final Titular titular;
-    private final int numeroCuenta;
+    private final String numeroCuenta;
     public double saldo;
     public boolean estado;
     private final Collection<Transaccion> listaTransacciones;
@@ -15,7 +15,7 @@ public abstract class CuentaBancaria {
     /*
      * Método constructor de la clase CuentaBancaria
      */
-    public CuentaBancaria(Titular titular, int numeroCuenta, double saldo, boolean estado,
+    public CuentaBancaria(Titular titular, String numeroCuenta, double saldo, boolean estado,
             Collection<Transaccion> listaTransacciones) {
         this.titular = titular;
         this.numeroCuenta = numeroCuenta;
@@ -34,7 +34,7 @@ public abstract class CuentaBancaria {
     /*
      * Método para obtener el numero de la cuenta bancaria
      */
-    public int getNumeroCuenta() {
+    public String getNumeroCuenta() {
         return numeroCuenta;
     }
 
@@ -55,7 +55,7 @@ public abstract class CuentaBancaria {
     /*
      * Método para obtener el estado de la cuenta con valor booleano (True ó False)
      */
-    public boolean isEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
@@ -85,24 +85,6 @@ public abstract class CuentaBancaria {
     /*
      * Método abstracto para definir que toda cuenta bancaria debe tener un método retirar
      */
-    public abstract void retirar (double valor);
-
-    /*
-     * Método para consultar el saldo de una cuenta
-     */
-    public double consultarSaldo (){
-        if(estado == true){
-            System.out.println("El saldo de la cuenta es: ");
-            return saldo;
-        }
-        else {
-            System.out.println("La cuenta está inactiva");
-            return 0.0;
-        }
-    }
-
-    
-
-    
+    public abstract void retirar (double valor);    
     
 }

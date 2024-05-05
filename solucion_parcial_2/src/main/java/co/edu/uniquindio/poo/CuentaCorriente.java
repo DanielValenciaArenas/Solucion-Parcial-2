@@ -10,7 +10,7 @@ public class CuentaCorriente extends CuentaBancaria {
     /*
      * Método constructor de la clase CuentaCorriente
      */
-    public CuentaCorriente(Titular titular, int numeroCuenta, double saldo, boolean estado,
+    public CuentaCorriente(Titular titular, String numeroCuenta, double saldo, boolean estado,
             Collection<Transaccion> listaTransacciones, double sobregiro) {
         super(titular, numeroCuenta, saldo, estado, listaTransacciones);
         this.sobregiro = sobregiro;
@@ -35,12 +35,19 @@ public class CuentaCorriente extends CuentaBancaria {
     @Override
     public void retirar(double valor) {
         assert valor > 0;
-        assert valor <= saldo;
-        saldo = saldo - valor;
-        if(saldo == 0) estado = false;
-        double sobregiroGastado = valor - saldo;
-        double nuevoSobregiro = sobregiro - sobregiroGastado;
-        sobregiro = nuevoSobregiro;
+        assert valor <= (saldo + sobregiro);
+
+        if (valor <= saldo) {
+            saldo = saldo - valor;
+        } else {
+            double diferencia = valor - saldo;
+            saldo = 0;
+            sobregiro = sobregiro - diferencia;
+        }
+
+        if (saldo == 0) {
+            estado = false;
+        }
     }
     
 

@@ -1,7 +1,7 @@
 /**
  * Clase para probar el funcionamiento del código de la clase CuentaAhorros
- * @author Área de programación UQ
- * @since 2023-08
+ * @author Daniel Valencia Arenas
+ * @since 2024
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
@@ -20,14 +20,17 @@ public class CuentaAhorrosTest {
     private static final Logger LOG = Logger.getLogger(CuentaAhorrosTest.class.getName());
 
     @Test
-    public void retirarDineroCuentaAhorros() {
-        LOG.info("Inicio test verificarValorNegativo");
+    public void retiroEnCuentaAhorros() {
+        LOG.info("Inicio test retiroEnCuentaAhorros");
+
         Titular titular = new Titular("Marzello", "Montes Bedoya");
         Collection<Transaccion> listaTransacciones = new LinkedList<>();
-        CuentaBancaria cuenta = new CuentaAhorros(titular, 11, 50000.0, true, listaTransacciones, 1.1);
-        cuenta.depositar(-20000);
-        assertEquals(70000, cuenta.getSaldo());
-        LOG.info("Finalización test verificarValorNegativo");
+        CuentaBancaria cuenta = new CuentaAhorros(titular, "54467", 220000.0, true, listaTransacciones, 1.1);
+        cuenta.retirar(220000.0);
+        
+        assertEquals(false, cuenta.getEstado());
+
+        LOG.info("Finalización test retiroEnCuentaAhorros");
 
     }
 }

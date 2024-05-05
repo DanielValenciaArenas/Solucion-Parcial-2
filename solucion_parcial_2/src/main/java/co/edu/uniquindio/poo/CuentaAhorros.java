@@ -11,7 +11,7 @@ public class CuentaAhorros extends CuentaBancaria {
     /*
      * Método constructor de la clase CuentaAhorros
      */
-    public CuentaAhorros(Titular titular, int numeroCuenta, double saldo, boolean estado,
+    public CuentaAhorros(Titular titular, String numeroCuenta, double saldo, boolean estado,
             Collection<Transaccion> listaTransacciones, double tasaIntentres) {
         super(titular, numeroCuenta, saldo, estado, listaTransacciones);
         this.tasaIntentres = tasaIntentres;
@@ -32,7 +32,9 @@ public class CuentaAhorros extends CuentaBancaria {
         assert valor > 0;
         assert valor <= saldo;
         saldo = saldo - valor;
-        if(saldo == 0) estado = false;
+        if(saldo == 0) {
+            estado = false;
+        }
     }
 
     

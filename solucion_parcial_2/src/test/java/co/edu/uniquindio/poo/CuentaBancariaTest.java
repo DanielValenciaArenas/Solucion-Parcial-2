@@ -1,7 +1,7 @@
 /**
- * Clase para probar el funcionamiento del código
- * @author Área de programación UQ
- * @since 2023-08
+ * Clase para probar el funcionamiento del código de la clase CuentaBancaria
+ * @author Daniel Valencia Arenas
+ * @since 2024
  * 
  * Licencia GNU/GPL V3.0 (https://raw.githubusercontent.com/grid-uq/poo/main/LICENSE) 
  */
@@ -22,11 +22,14 @@ public class CuentaBancariaTest {
     @Test
     public void verificarValorNegativo() {
         LOG.info("Inicio test verificarValorNegativo");
-        Titular titular = new Titular("Marzello", "Montes Bedoya");
+
+        Titular titular = new Titular("Byron", "Goméz Goméz");
         Collection<Transaccion> listaTransacciones = new LinkedList<>();
-        CuentaBancaria cuenta = new CuentaAhorros(titular, 11, 50000.0, true, listaTransacciones, 1.1);
+        CuentaBancaria cuenta = new CuentaAhorros(titular, "1111", 50000.0, true, listaTransacciones, 1.5);
         cuenta.depositar(-20000);
+        
         assertEquals(70000, cuenta.getSaldo());
+
         LOG.info("Finalización test verificarValorNegativo");
 
     }
